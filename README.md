@@ -1,4 +1,4 @@
-# Pinocchio Robot Arm Inverse Kinematics (IK) with Joint Limits
+# Robot Arm Inverse Kinematics (IK) with Joint Limits
 
 This project demonstrates a robot arm inverse kinematics (IK) solver using the Pinocchio library and CVXPY for joint limit enforcement. It allows you to interactively specify desired end-effector positions, and the solver computes joint angles that bring the end-effector as close as possible to the target while respecting joint limits.
 
