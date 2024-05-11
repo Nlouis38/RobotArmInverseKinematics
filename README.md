@@ -49,10 +49,43 @@ This project demonstrates a robot arm inverse kinematics (IK) solver using the P
      - Visualizes the robot arm in its final configuration using Matplotlib.
    - If no valid solution is found within the specified number of iterations, prints a warning message.
 
-## Installation
+# Installation Instructions
 
-1. **Prerequisites:** Ensure you have Python (3.6 or later) and pip (Python package installer) installed on your system.
+This project requires several Python libraries to be installed. You can use either `pip` or `conda` as your package manager.
 
-2. **Create a Virtual Environment (Recommended):**
+## Prerequisites
+
+- **Python:** Make sure you have Python 3.6 or later installed on your system. You can check your Python version by typing `python --version` in your terminal.
+- **pip (or conda):** You'll need either `pip` (Python's package installer) or `conda` (a cross-platform package and environment manager) to install the libraries.
+
+## Option 1: Installation with `pip`
+
+1. **Create a Virtual Environment (Recommended):**
+   - It's good practice to create a virtual environment to isolate the dependencies of this project from your other Python projects.
+   - Open your terminal and navigate to your project directory.
+   - Create the environment:
+     ```bash
+     python -m venv robot_ik_env 
+     ```
+
+2. **Activate the Environment:**
+   - **Windows:** `robot_ik_env\Scripts\activate`
+   - **macOS/Linux:** `source robot_ik_env/bin/activate`
+
+3. **Install Libraries:**
+   - Install all the required libraries with the following command:
+     ```bash
+     pip install pinocchio numpy matplotlib cvxpy osqp
+     ```
+
+## Option 2: Installation with `conda`
+
+1. **Create a Conda Environment (Recommended):**
+   - If you prefer using conda, create a new environment for this project:
+     ```bash
+     conda create -n robot_ik_env python=3.8  # Or your desired Python version
+     ```
+
+2. **Activate the Environment:**
    ```bash
-   python -m venv robot_ik_env 
+   conda activate robot_ik_env
