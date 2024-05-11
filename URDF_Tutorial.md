@@ -29,3 +29,67 @@ To ensure compatibility with the IK solver, your URDF file must adhere to the fo
 ## Example URDF
 
 Refer to the provided example URDF file for a sample implementation of these guidelines. You can use this as a template and modify it to match the specific structure of your robot arm.
+
+```xml
+<?xml version="1.0"?>
+<robot name="simple_arm">
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.05"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="shoulder_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0.025"/> 
+    <axis xyz="0 0 1"/>
+    <limit effort="100" velocity="1.0" lower="-1.57" upper="1.57"/> 
+  </joint>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="0.1 0.02 0.02"/>
+      </geometry>
+      <origin xyz="0.05 0 0"/> 
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.02 0.02"/>
+      </geometry>
+      <origin xyz="0.05 0 0"/> 
+    </collision>
+  </link>
+
+  <joint name="elbow_joint" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0.1 0 0"/> 
+    <axis xyz="0 0 1"/>
+    <limit effort="100" velocity="1.0" lower="-1.57" upper="1.57"/> 
+  </joint>
+
+  <link name="link2">
+    <visual>
+      <geometry>
+        <box size="0.1 0.02 0.02"/>
+      </geometry>
+      <origin xyz="0.05 0 0"/> 
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.02 0.02"/>
+      </geometry>
+      <origin xyz="0.05 0 0"/> 
+    </collision>
+  </link>
+</robot>
