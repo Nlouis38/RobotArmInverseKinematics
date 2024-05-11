@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<robot name="robotarm">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.038 0.079 0.038"/>
+      </geometry>
+    </visual>
+    <collision>  
+      <geometry>
+          <box size="0.038 0.079 0.038"/> 
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="shoulder">
+    <visual>
+        <origin xyz="0 0.065 0"/>
+        <geometry>
+            <box size="0.157480 0.051 0.094"/>
+        </geometry>
+    </visual>
+    <collision>  
+        <origin xyz="0 0.065 0"/>  <geometry>
+            <box size="0.157480 0.051 0.094"/>  </geometry>
+    </collision>
+</link>
+
+  <joint name="shoulder_rot" type="revolute">
+    <parent link="base_link"/>
+    <child link="shoulder"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1" velocity="0.01" lower="0" upper="3.14159"/>
+  </joint>
+
+    <link name="bicep">
+    <visual>
+        <origin xyz="0 0 -0.1183325"/>     
+      <geometry>
+        <box size="0.051 0.051 0.236665"/>
+      </geometry>
+    </visual>
+    <collision>  
+        <origin xyz="0 0 -0.1183325"/> <geometry>
+            <box size="0.051 0.051 0.236665"/>  </geometry>
+    </collision>
+  </link>
+
+  <joint name="shoulder_tilt" type="revolute">
+    <parent link="shoulder"/>
+    <child link="bicep"/>
+    <origin xyz="0 0.065 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1" velocity="0.01" lower="0" upper="2.0944"/>
+  </joint>
+
+  <link name="elbow_joint">
+    <visual> 
+        <origin xyz="0 0 -0.01905"/>
+      <geometry>
+        <box size="0.051 0.051 0.0381"/>
+      </geometry>
+    </visual>
+    <collision>  
+        <origin xyz="0 0 -0.01905"/> <geometry>
+            <box size="0.051 0.051 0.0381"/>  </geometry>
+    </collision>
+  </link>
+
+  <joint name="elbow_rot" type="revolute">
+    <parent link="bicep"/>
+    <child link="elbow_joint"/>
+    <origin xyz="0 0 -0.236665"/>  
+    <axis xyz="0 0 1"/>
+    <limit effort="1" velocity="0.01" lower="-1.5708" upper="1.5708"/>
+  </joint>
+    
+    <link name="forearm">
+    <visual> 
+        <origin xyz="0 0 -0.0835975"/>
+      <geometry>
+        <box size="0.051 0.051 0.167195"/>
+      </geometry>
+    </visual>
+    <collision>  
+        <origin xyz="0 0 -0.0835975"/> <geometry>
+            <box size="0.051 0.051 0.167195"/>  </geometry>
+    </collision>
+  </link>
+
+    <joint name="elbow_tilt" type="revolute">
+    <parent link="elbow_joint"/>
+    <child link="forearm"/>
+    <origin xyz="0 0 -0.0381"/>  
+    <axis xyz="0 1 0"/>
+    <limit effort="1" velocity="0.01" lower="0" upper="2.0944"/>
+  </joint>
+
+  <link name="wrist_joint">
+    <visual> 
+        <origin xyz="0 0 -0.01905"/>
+      <geometry>
+        <box size="0.051 0.051 0.0381"/>
+      </geometry>
+    </visual>
+    <collision>  
+        <origin xyz="0 0 -0.01905"/> <geometry>
+            <box size="0.051 0.051 0.0381"/>  </geometry>
+    </collision>
+  </link>
+
+  <joint name="wrist_rot" type="revolute">
+    <parent link="forearm"/>
+    <child link="wrist_joint"/>
+    <origin xyz="0 0 -0.167195"/>  
+    <axis xyz="0 0 1"/>
+    <limit effort="1" velocity="0.01" lower="-1.5708" upper="1.5708"/>
+  </joint>
+
+  <link name="gripper">
+    <visual> 
+        <origin xyz="0 0 -0.047625"/>
+      <geometry>
+        <box size="0.051 0.051 0.09525"/>
+      </geometry>
+    </visual>
+    <collision>  
+        <origin xyz="0 0 -0.047625"/> <geometry>
+            <box size="0.051 0.051 0.09525"/>  </geometry>
+    </collision>
+  </link>
+    
+  <joint name="wrist_tilt" type="revolute">
+    <parent link="wrist_joint"/>
+    <child link="gripper"/>
+    <origin xyz="0 0 -0.0381"/>  
+    <axis xyz="0 1 0"/>
+    <limit effort="1" velocity="0.01" lower="0" upper="2.0944"/>
+  </joint>
+    
+</robot>
