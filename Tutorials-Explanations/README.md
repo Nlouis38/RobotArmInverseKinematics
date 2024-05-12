@@ -19,7 +19,7 @@ data = model.createData()
     *   `model`: Loads the robot model description from the URDF file using Pinocchio.
     *   `data`: Creates a data structure to store the robot's state during calculations.
 
-### 2. Configuration and Parameters:**
+### 2. Configuration and Parameters:
 
 ```python
 JOINT_ID = 6 
