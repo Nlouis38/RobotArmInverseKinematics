@@ -8,7 +8,7 @@ import cvxpy as cp
 import time  # Import the time module
 
 # -- Model Setup --
-URDF_FILENAME = r"C:\Users\nazir\OneDrive\Documents\Python Programs\RobotArm_Pin\robotarm.urdf"  # Replace with the path to your URDF file
+URDF_FILENAME = r"C:\Users\nazir\OneDrive\Documents\Python Programs\RobotArm_Pin\robotArm.urdf"  # Replace with the path to your URDF file
 model = pinocchio.buildModelFromUrdf(URDF_FILENAME)  # Build a standard manipulator robot model
 data = model.createData()  # Create a structure to store robot dynamics data
 
