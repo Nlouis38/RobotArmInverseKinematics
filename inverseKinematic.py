@@ -8,7 +8,7 @@ import cvxpy as cp
 import time  # Import the time module
 
 # -- Model Setup --
-URDF_FILENAME = r"C:\Users\nazir\OneDrive\Documents\Python Programs\RobotArm_Pin\robotarm3.urdf"  # Replace with the path to your URDF file
+URDF_FILENAME = r"C:\Users\nazir\OneDrive\Documents\Python Programs\RobotArm_Pin\robotarm.urdf"  # Replace with the path to your URDF file
 model = pinocchio.buildModelFromUrdf(URDF_FILENAME)  # Build a standard manipulator robot model
 data = model.createData()  # Create a structure to store robot dynamics data
 
@@ -18,7 +18,7 @@ JOINT_ID = 6  # ID of the joint to control (assuming a 6+ joint manipulator)
 # -- Initialize Configuration --
 q = pinocchio.neutral(model)  # Get a neutral/reference starting configuration 
 eps = 0.025 # Tolerance for error
-IT_MAX = 250  # Maximum iterations
+IT_MAX = 500  # Maximum iterations
 DT = 1e-1  # Time step for simulation-like iteration
 damp = 1e-12  # Damping term for numerical stability
 
