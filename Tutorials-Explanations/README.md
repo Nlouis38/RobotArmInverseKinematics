@@ -154,8 +154,8 @@ while True:
         print("\nWarning: the iterative algorithm has not reached convergence to the desired precision")
 ```
 
-
-*If the algorithm converged (`success` is `True`), print the solution:
+**Sucess**
+*   If the algorithm converged (`success` is `True`), print the solution:
 
 *   **Total time taken to solve:** 
     ```python
@@ -172,7 +172,8 @@ while True:
     ```python
     #visualize_robot_arm(model, data, q) # Assuming you have this function defined.
     ```
-*If the algorithm did not converge, print a warning message:
+  **Failure**
+*   If the algorithm did not converge, print a warning message:
 
 ```python
 if not success:
