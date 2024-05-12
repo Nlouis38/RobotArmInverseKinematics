@@ -89,3 +89,10 @@ This project requires several Python libraries to be installed. You can use eith
 2. **Activate the Environment:**
    ```bash
    conda activate robot_ik_env
+
+3. **Install Libraries:**
+   - Install all the required libraries with the following command:
+     ```bash
+     pip install pinocchio numpy matplotlib cvxpy osqp
+     ```
+
