@@ -1,4 +1,4 @@
-1.	Imports and Initialization:
+### 1. Imports and Initialization
 ```python
 from __future__ import print_function
 import numpy as np
@@ -12,8 +12,6 @@ URDF_FILENAME = r"C:\Users\nazir\OneDrive\Documents\Python Programs\RobotArm_Pin
 model = pinocchio.buildModelFromUrdf(URDF_FILENAME)
 data = model.createData()
 ```
-
-### 1. Imports and Initialization
 
 *   **Import necessary modules:** Imports the required Python libraries for calculations, optimization, and visualization.
 *   **Load robot model from URDF:**
