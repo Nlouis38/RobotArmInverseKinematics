@@ -61,7 +61,6 @@ while True:
     oMdes = pinocchio.SE3(np.eye(3), np.array([x, y, z]))
     start_time = time.time()
 ```
-### 4. Main Loop:
 *   **Purpose:** Continuously prompts the user for target end-effector positions until they quit.
 *   **Key Points:**
     *   Takes user input in the format "x y z".
@@ -90,8 +89,6 @@ while True:
         # ... rest of the code (Jacobian, optimization, etc.) ...
 ```
 
-### 5. Iterative IK Algorithm:
-
 *   **Purpose:** This is the core of the IK solver. It iteratively adjusts the joint angles to move the end-effector towards the desired position.
 *   `pinocchio.forwardKinematics(model, data, q)`: Performs forward kinematics, calculating the position of the end-effector given the current joint angles `q`.
 *   `iMd = data.oMi[JOINT_ID].actInv(oMdes)`: Calculates the difference between the current end-effector pose and the desired pose.
@@ -107,11 +104,8 @@ while True:
         J = pinocchio.computeJointJacobian(model, data, q, JOINT_ID) 
         J = -np.dot(pinocchio.Jlog6(iMd.inverse()), J)
 ```
-### 6. Jacobian Calculation and Transformation:
 
-*   `J = pinocchio.computeJointJacobian(model, data, q, JOINT_ID)`:
     *   Calculates the Jacobian matrix for the end-effector joint. The Jacobian relates joint velocities to end-effector velocities in the robot's current configuration.
-*   `J = -np.dot(pinocchio.Jlog6(iMd.inverse()), J)`:
     *   Transforms the Jacobian from joint space to task space (Cartesian space). This is necessary because we want to control the end-effector's position directly.
 
 ### 7. QP Optimization (Calculate Joint Angle Updates):
@@ -132,8 +126,6 @@ while True:
             print(f"{i}: error = {err.T}") 
             print(f"result: {q.flatten().tolist()}")
 ```
-
-### 7. QP Optimization (Calculate Joint Angle Updates):
 *   **Purpose:** Calculates the optimal joint angle updates using quadratic programming (QP) optimization, taking joint limits into account.
 *   `q_next = cp.Variable(model.nq)`: Creates a variable representing the next set of joint angles, which will be optimized.
 *   `desired_q_change`: Calculates the desired change in joint angles using a damped least-squares method. This aims to minimize the error between the current and desired end-effector poses.
@@ -144,5 +136,46 @@ while True:
 *   `q = q_next.value`: Updates the joint angles `q` with the optimal values found by the solver.
 *   **Progress Reporting:** The `if i % 10 == 0` block prints the current iteration number and the error every 10 iterations, providing feedback on the solver's progress. 
 
+### Result Output and Visualization:
+```python
+            if success:
+        end_time = time.time()
+        solve_time = end_time - start_time
 
+        print("Convergence achieved!")
+        print(f"\nTime to solve: {solve_time:.4f} seconds")
+        print('\nresult (degrees): %s' % np.degrees(q.flatten()).tolist())
+
+        # Visualization
+        joint_positions = [data.oMi[joint_id].translation for joint_id in range(model.njoints)]
+        endpoint = data.oMi[JOINT_ID].translation.copy()
+        visualize_robot_arm(joint_positions, endpoint)
+
+    else:
+        print("\nWarning: the iterative algorithm has not reached convergence to the desired precision")
+```
+
+
+*If the algorithm converged (`success` is `True`), print the solution:
+
+*   **Total time taken to solve:** 
+    ```python
+    end_time = time.time()
+    print("Total time taken: ", end_time - start_time) 
+    ```
+*   **Final joint angles (converted to degrees):**
+    ```python
+    print("Solution found in {i} iterations: ")
+    print(f"result: {np.degrees(q).flatten().tolist()}") 
+    ```
+
+*   **(Optional) Visualize the robot arm:**
+    ```python
+    #visualize_robot_arm(model, data, q) # Assuming you have this function defined.
+    ```
+*If the algorithm did not converge, print a warning message:
+
+```python
+if not success:
+    print("IK solution not found - Max iterations reached.")
 
