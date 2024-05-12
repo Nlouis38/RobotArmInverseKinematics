@@ -1,5 +1,5 @@
 1.	Imports and Initialization:
-```
+```python
 from __future__ import print_function
 import numpy as np
 from numpy.linalg import norm, solve
@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 URDF_FILENAME = r"C:\Users\nazir\OneDrive\Documents\Python Programs\RobotArm_Pin\robotArm.urdf" 
 model = pinocchio.buildModelFromUrdf(URDF_FILENAME)
 data = model.createData()
-```python
+```
 
 •	Import necessary modules: Imports the required Python libraries for calculations, optimization, and visualization.
 •	Load robot model from URDF: 
@@ -19,6 +19,7 @@ o	URDF_FILENAME: Set to the path of your robot's URDF file (replace with the act
 o	model: Loads the robot model description from the URDF file using Pinocchio.
 o	data: Creates a data structure to store the robot's state during calculations.
 2. Configuration and Parameters:
+
 ```
 JOINT_ID = 6 
 q = pinocchio.neutral(model) 
