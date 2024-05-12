@@ -95,4 +95,12 @@ This project requires several Python libraries to be installed. You can use eith
      ```bash
      pip install pinocchio numpy matplotlib cvxpy osqp
      ```
+## Dependencies
+
+This project relies on the following libraries:
+
+* **Pinocchio:** A versatile library for rigid body dynamics modeling, simulation, and optimization. Find the Pinocchio repository on GitHub: [https://github.com/stack-of-tasks/pinocchio](https://github.com/stack-of-tasks/pinocchio)
+* **NumPy:** The fundamental package for scientific computing with Python. Explore NumPy on GitHub: [https://github.com/numpy/numpy](https://github.com/numpy/numpy)
+* **CVXPY:** A Python-embedded modeling language for convex optimization problems. Discover CVXPY on GitHub: [https://github.com/cvxpy/cvxpy](https://github.com/cvxpy/cvxpy)
+* **Matplotlib:** A comprehensive library for creating static, animated, and interactive visualizations in Python. Check out Matplotlib on GitHub: [https://github.com/matplotlib/matplotlib](https://github.com/matplotlib/matplotlib)
 
