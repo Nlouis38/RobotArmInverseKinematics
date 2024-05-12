@@ -104,9 +104,8 @@ while True:
         J = pinocchio.computeJointJacobian(model, data, q, JOINT_ID) 
         J = -np.dot(pinocchio.Jlog6(iMd.inverse()), J)
 ```
-
-    *   Calculates the Jacobian matrix for the end-effector joint. The Jacobian relates joint velocities to end-effector velocities in the robot's current configuration.
-    *   Transforms the Jacobian from joint space to task space (Cartesian space). This is necessary because we want to control the end-effector's position directly.
+*   Calculates the Jacobian matrix for the end-effector joint. The Jacobian relates joint velocities to end-effector velocities in the robot's current configuration.
+*   Transforms the Jacobian from joint space to task space (Cartesian space). This is necessary because we want to control the end-effector's position directly.
 
 ### 7. QP Optimization (Calculate Joint Angle Updates):
 
