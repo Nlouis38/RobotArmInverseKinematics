@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 URDF_FILENAME = r"C:\Users\nazir\OneDrive\Documents\Python Programs\RobotArm_Pin\robotArm.urdf" 
 model = pinocchio.buildModelFromUrdf(URDF_FILENAME)
 data = model.createData()
-```
+```python
+
 •	Import necessary modules: Imports the required Python libraries for calculations, optimization, and visualization.
 •	Load robot model from URDF: 
 o	URDF_FILENAME: Set to the path of your robot's URDF file (replace with the actual path).
