@@ -20,7 +20,7 @@ o	model: Loads the robot model description from the URDF file using Pinocchio.
 o	data: Creates a data structure to store the robot's state during calculations.
 2. Configuration and Parameters:
 
-```
+```python
 JOINT_ID = 6 
 q = pinocchio.neutral(model) 
 eps = 0.025 
@@ -35,13 +35,15 @@ damp = 1e-12
 •	DT: The integration time step used in the IK algorithm. A smaller value generally leads to higher accuracy but might increase computation time.
 •	damp: A small damping factor added to the Jacobian matrix. This is a regularization technique to prevent numerical instabilities that can arise during calculations, especially when the Jacobian is ill-conditioned (close to singular).
 2.	Joint Limits
-```
+
+```python
 lower_limits = model.lowerPositionLimit
 upper_limits = model.upperPositionLimit
 ```
 •	Reads the lower and upper joint limits from the URDF model. These limits will be enforced as constraints in the optimization process.
 4. Main Loop:
-```
+
+```python
 while True:
     input_str = input("Enter desired end-effector position (x y z, or type 'q' to quit): ")
     if input_str.lower() == 'q':
@@ -62,7 +64,8 @@ o	Handles invalid input with a try-except block.
 o	oMdes represents the desired pose (position and orientation) of the end-effector.
 o	start_time variable records the current time before starting the IK iterations to measure computation time.
 5. Iterative IK Algorithm:
-```
+
+```python
     i = 0
     while True:
         pinocchio.forwardKinematics(model, data, q)
@@ -80,6 +83,7 @@ o	start_time variable records the current time before starting the IK iterations
         
         # ... rest of the code (Jacobian, optimization, etc.) ...
 ```
+
 •	Purpose: This is the core of the IK solver. It iteratively adjusts the joint angles to move the end-effector towards the desired position.
 •	pinocchio.forwardKinematics(model, data, q): 
 o	Performs forward kinematics, calculating the position of the end-effector given the current joint angles q.
@@ -103,7 +107,8 @@ o	Calculates the Jacobian matrix for the end-effector joint. The Jacobian relate
 •	J = -np.dot(pinocchio.Jlog6(iMd.inverse()), J): 
 o	Transforms the Jacobian from joint space to task space (Cartesian space). This is necessary because we want to control the end-effector's position directly.
 •	7. QP Optimization (Calculate Joint Angle Updates):
-```
+
+```python
         q_next = cp.Variable(model.nq)  
 
         desired_q_change = -J.T.dot(solve(J.dot(J.T) + damp * np.eye(6), err)) * DT
@@ -119,6 +124,7 @@ o	Transforms the Jacobian from joint space to task space (Cartesian space). This
             print(f"{i}: error = {err.T}") 
             print(f"result: {q.flatten().tolist()}")
 ```
+
 •  Purpose: Calculates the optimal joint angle updates using quadratic programming (QP) optimization, taking joint limits into account. 
 •  q_next = cp.Variable(model.nq): Creates a variable representing the next set of joint angles, which will be optimized. 
 •  desired_q_change: Calculates the desired change in joint angles using a damped least-squares method. This aims to minimize the error between the current and desired end-effector poses. 
