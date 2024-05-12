@@ -137,7 +137,7 @@ while True:
 
 ### Result Output and Visualization:
 ```python
-            if success:
+   if success:
         end_time = time.time()
         solve_time = end_time - start_time
 
